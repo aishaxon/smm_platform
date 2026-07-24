@@ -68,3 +68,5 @@ frontendda yashirish YETARLI EMAS. Masalan `apps/stages/views.py` dagi
 5. Employee sifatida login qilib `/api/stages/{id}/start/` va `/complete/` chaqiring
 6. CEO sifatida `/api/salary/calculate/{user_id}/{year}/{month}/` chaqirib oylikni hisoblang
 # smm_platform
+# smm_platform
+# smm_platform
