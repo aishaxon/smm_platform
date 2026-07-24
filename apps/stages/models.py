@@ -37,8 +37,6 @@ class Stage(models.Model):
 
 
 class Task(models.Model):
-    """Bosqich ichidagi mayda vazifalar (ixtiyoriy, kelajakda kengaytirish uchun)."""
-
     stage = models.ForeignKey(Stage, related_name="tasks", on_delete=models.CASCADE)
     title = models.CharField(max_length=150)
     assigned_to = models.ForeignKey(

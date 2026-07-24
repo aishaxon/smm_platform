@@ -1,9 +1,3 @@
-"""
-Klassik variant: aiogram/asyncio kerak emas, faqat `requests` bilan
-Telegram Bot API'ga oddiy HTTP so'rovlar (long polling).
-
-Ishga tushirish: python manage.py runbot
-"""
 import re
 import secrets
 import time
@@ -15,7 +9,6 @@ from .services import find_user_by_phone, generate_otp, verify_otp, attach_teleg
 
 API_URL = "https://api.telegram.org/bot{token}/{method}"
 
-# chat_id -> kutilayotgan telefon raqam (OTP tasdiqlanguncha)
 _pending_phone: dict[int, str] = {}
 
 
@@ -81,7 +74,6 @@ def handle_update(update: dict):
 
         code = generate_otp(phone)
         _pending_phone[chat_id] = phone
-        # DIQQAT: demo uchun kod to'g'ridan-to'g'ri botga yozilmoqda.
         send_message(
             chat_id,
             f"Tasdiqlash kodi: {code}\nUshbu 6 xonali kodni shu yerga yozib yuboring.",
@@ -116,7 +108,6 @@ def handle_update(update: dict):
 
 
 def run_polling():
-    """Cheksiz sikl - Ctrl+C bilan to'xtatiladi."""
     offset = None
     print("Bot polling rejimida ishga tushdi (to'xtatish uchun Ctrl+C)...")
     while True:

@@ -15,7 +15,6 @@ certifi==2025.7.9
 cffi==2.0.0
 charset-normalizer==3.4.3
 click==8.1.7
-cockpit @ file:///builddir/build/BUILD/cockpit-348-build/cockpit-348/tmp/wheel/cockpit-348-py3-none-any.whl#sha256=3b2d0e9576fd89f51def86287b1395fe1a4378688b70cce83129d7205dacef46
 crypt_r==3.13.1
 cupshelpers==1.0
 dasbus==1.7
@@ -73,7 +72,6 @@ pygdbmi==0.11.0.0
 PyGObject==3.54.3
 pyinotify==0.9.6
 PyJWT==2.13.0
-pykickstart @ file:///builddir/build/BUILD/pykickstart-3.66-build/pykickstart-3.66
 pyparted==3.13.0
 PySocks==1.7.1
 pyTelegramBotAPI==4.35.0
@@ -84,8 +82,6 @@ python-meh==0.52
 pyudev==0.24.3
 pyxdg==0.27
 PyYAML==6.0.2
-pyynl @ file:///builddir/build/BUILD/kernel-6.17.1-build/kernel-6.17.1/linux-6.17.1-300.fc43.x86_64/tools/net/ynl
-RapidFuzz==3.12.2
 referencing==0.36.2
 regex==2025.8.29
 requests==2.32.5
@@ -94,11 +90,7 @@ requests-ftp==0.3.1
 rpds-py==0.27.0
 rpm==6.0.0
 s3transfer==0.14.0
-selinux @ file:///builddir/build/BUILD/libselinux-3.9-build/libselinux-3.9/src
 sentry-sdk==2.35.0
-sepolicy @ file:///builddir/build/BUILD/policycoreutils-3.9-build/selinux-3.9/python/sepolicy
-setools==4.6.0
-setroubleshoot @ file:///builddir/build/BUILD/setroubleshoot-3.3.35-build/setroubleshoot-3.3.35/src
 setuptools==78.1.1
 simpleaudio==1.0.4
 simpleline==1.9.0

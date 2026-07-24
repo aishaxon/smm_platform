@@ -11,11 +11,6 @@ from apps.notifications.services import notify_user
 
 
 class StageViewSet(viewsets.ModelViewSet):
-    """
-    ENG MUHIM QISM: get_queryset() orqali har bir rol faqat o'ziga
-    tegishli bosqichlarni ko'radi. Bu frontendda emas, backendda
-    (queryset darajasida) amalga oshirilishi shart.
-    """
     serializer_class = StageSerializer
     permission_classes = [IsAuthenticated]
 

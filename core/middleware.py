@@ -4,8 +4,6 @@ logger = logging.getLogger("role_access")
 
 
 class RoleAccessLogMiddleware:
-    """Har bir so'rovni foydalanuvchi roli bilan birga log qiladi (audit uchun foydali)."""
-
     def __init__(self, get_response):
         self.get_response = get_response
 

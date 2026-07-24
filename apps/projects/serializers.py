@@ -15,7 +15,6 @@ class ProjectSerializer(serializers.ModelSerializer):
 
 
 class ProjectClientSerializer(serializers.ModelSerializer):
-    """Mijoz uchun - faqat umumiy progress, ichki tafsilotlarsiz."""
     progress_percent = serializers.ReadOnlyField()
 
     class Meta:

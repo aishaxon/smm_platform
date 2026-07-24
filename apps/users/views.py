@@ -1,21 +1,15 @@
 import secrets
-
 from django.contrib.auth.hashers import make_password
 from rest_framework import viewsets, status
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
-
 from .models import User, Permission, UserPermission
 from .serializers import UserSerializer, PermissionSerializer
 from core.permissions.base import IsCEO
 
 
 class UserViewSet(viewsets.ModelViewSet):
-    """
-    Faqat CEO xodim qo'sha oladi, rol/ruxsat bera oladi.
-    Har bir xodim /me/ orqali o'z profilini ko'radi.
-    """
     serializer_class = UserSerializer
     permission_classes = [IsAuthenticated, IsCEO]
 
@@ -28,10 +22,6 @@ class UserViewSet(viewsets.ModelViewSet):
 
     @action(detail=False, methods=["post"])
     def create_employee(self, request):
-        """
-        CEO yangi xodim/PM/mijoz qo'shadi. Parol avtomatik generatsiya qilinadi -
-        xodim keyinchalik shu parolni Telegram bot orqali oladi (OTP tasdiqlagandan keyin).
-        """
         data = request.data
         phone = data.get("phone")
         if not phone:
