@@ -15,6 +15,9 @@ class User(AbstractUser):
     is_active_employee = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
+
+    REQUIRED_FIELDS = ["email", "phone"] 
+
     def __str__(self):
         return f"{self.get_full_name() or self.username} ({self.role})"
 
