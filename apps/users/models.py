@@ -9,7 +9,7 @@ class User(AbstractUser):
         ("employee", "Employee"),
         ("client", "Client"),
     ]
-    phone = models.CharField(max_length=20, unique=True,null = True,blank=True)
+    phone = models.CharField(max_length=20, unique=True)
     telegram_id = models.BigIntegerField(null=True, blank=True, unique=True)
     role = models.CharField(max_length=20, choices=ROLE_CHOICES)
     is_active_employee = models.BooleanField(default=True)
