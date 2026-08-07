@@ -16,7 +16,7 @@ class User(AbstractUser):
     created_at = models.DateTimeField(auto_now_add=True)
 
 
-    REQUIRED_FIELDS = ["email", "phone"] 
+    REQUIRED_FIELDS = ["email", "phone", "role"]
 
     def __str__(self):
         return f"{self.get_full_name() or self.username} ({self.role})"
