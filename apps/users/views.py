@@ -1,12 +1,14 @@
 import secrets
 from django.contrib.auth.hashers import make_password
-from rest_framework import viewsets, status
+from rest_framework import viewsets, status,APIView
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from .models import User, Permission, UserPermission
 from .serializers import UserSerializer, PermissionSerializer
 from core.permissions.base import IsCEO
+from rest_framework.permissions import AllowAny
+from .serializers import ClientRegisterSerializer
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -66,3 +68,19 @@ class PermissionViewSet(viewsets.ModelViewSet):
     queryset = Permission.objects.all()
     serializer_class = PermissionSerializer
     permission_classes = [IsAuthenticated, IsCEO]
+
+
+
+
+class ClientRegisterView(APIView):
+    permission_classes = [AllowAny]
+
+    def post(self, request):
+        serializer = ClientRegisterSerializer(data=request.data)
+        if serializer.is_valid():
+            user = serializer.save()
+            return Response(
+                {"message": "Ro'yxatdan muvaffaqiyatli o'tdingiz", "user": UserSerializer(user).data},
+                status=status.HTTP_201_CREATED,
+            )
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
