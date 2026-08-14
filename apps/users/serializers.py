@@ -49,3 +49,30 @@ class ClientRegisterSerializer(serializers.ModelSerializer):
         user.set_password(password)
         user.save()
         return user
+
+
+
+
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+
+
+class PhoneTokenObtainPairSerializer(TokenObtainPairSerializer):
+    username_field = "phone"
+
+    def validate(self, attrs):
+        phone = attrs.get("phone")
+        password = attrs.get("password")
+
+        try:
+            user = User.objects.get(phone=phone)
+        except User.DoesNotExist:
+            raise serializers.ValidationError("Telefon raqam yoki parol noto'g'ri")
+
+        if not user.check_password(password):
+            raise serializers.ValidationError("Telefon raqam yoki parol noto'g'ri")
+
+        if not user.is_active:
+            raise serializers.ValidationError("Hisob faol emas")
+
+        refresh = self.get_token(user)
+        return {"refresh": str(refresh), "access": str(refresh.access_token)}
