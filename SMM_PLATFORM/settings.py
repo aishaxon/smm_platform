@@ -8,11 +8,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "_rp_)93&jlm3m2!eb9kb#9-p5n5qj)^j=nndt_x1+j8z^(v@^="
 DEBUG = True
 ALLOWED_HOSTS = ["*"]
+CORS_ALLOW_ALL_ORIGINS = True
+
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
     "http://localhost:3000",
     "http://127.0.0.1:3000",
+    "http://localhost:5174",
+    "http://127.0.0.1:5174",
+
 ]
 
 INSTALLED_APPS = [
@@ -39,6 +44,7 @@ AUTH_USER_MODEL = "users.User"
 
 MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.common.CommonMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
