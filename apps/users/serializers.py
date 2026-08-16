@@ -75,4 +75,12 @@ class PhoneTokenObtainPairSerializer(TokenObtainPairSerializer):
             raise serializers.ValidationError("Hisob faol emas")
 
         refresh = self.get_token(user)
-        return {"refresh": str(refresh), "access": str(refresh.access_token)}
+
+        
+        return {
+            "refresh": str(refresh),
+            "access": str(refresh.access_token),
+            "role": user.role,
+            "user_id": user.id,
+            "full_name": user.get_full_name() or user.username,
+        }
