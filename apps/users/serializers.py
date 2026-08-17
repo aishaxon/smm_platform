@@ -63,11 +63,15 @@ class PhoneTokenObtainPairSerializer(TokenObtainPairSerializer):
         raw_phone = attrs.get("phone", "")
         password = attrs.get("password")
 
-        phone = "".join(ch for ch in raw_phone if ch.isdigit() or ch == "+")
+        # Faqat raqamlarni ajratib olamiz (plyus, probel, tire - bari olib tashlanadi)
+        digits = "".join(ch for ch in raw_phone if ch.isdigit())
 
-        try:
-            user = User.objects.get(phone=phone)
-        except User.DoesNotExist:
+        # Ikkala formatni ham sinaymiz: "+998..." va "998..."
+        candidates = {digits, f"+{digits}"}
+
+        user = User.objects.filter(phone__in=candidates).first()
+
+        if not user:
             raise serializers.ValidationError("Telefon raqam yoki parol noto'g'ri")
 
         if not user.check_password(password):
