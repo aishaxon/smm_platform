@@ -60,8 +60,10 @@ class PhoneTokenObtainPairSerializer(TokenObtainPairSerializer):
     username_field = "phone"
 
     def validate(self, attrs):
-        phone = attrs.get("phone")
+        raw_phone = attrs.get("phone", "")
         password = attrs.get("password")
+
+        phone = "".join(ch for ch in raw_phone if ch.isdigit() or ch == "+")
 
         try:
             user = User.objects.get(phone=phone)
@@ -76,12 +78,11 @@ class PhoneTokenObtainPairSerializer(TokenObtainPairSerializer):
 
         refresh = self.get_token(user)
 
-        
         return {
             "refresh": str(refresh),
             "access": str(refresh.access_token),
             "role": user.role,
             "user_id": user.id,
-            "user_phone":user.phone,
+            "user_phone": user.phone,
             "full_name": user.get_full_name() or user.username,
         }
