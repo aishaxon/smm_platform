@@ -82,5 +82,6 @@ class PhoneTokenObtainPairSerializer(TokenObtainPairSerializer):
             "access": str(refresh.access_token),
             "role": user.role,
             "user_id": user.id,
+            "user_phone":user.phone,
             "full_name": user.get_full_name() or user.username,
         }
